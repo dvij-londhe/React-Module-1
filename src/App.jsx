@@ -33,24 +33,25 @@ function App() {
           <h2>Core Concepts</h2>
           <ul>
             {/* First approach to pass props */}
-            <CoreConcepts
+            {/* <CoreConcepts
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
               image={CORE_CONCEPTS[0].image}
-            />
+            /> */}
 
             {/* More readable and neat way to pass props */}
-            <CoreConcepts {...CORE_CONCEPTS[1]} />
+            {/* <CoreConcepts {...CORE_CONCEPTS[1]} /> */}
 
-            <CoreConcepts {...CORE_CONCEPTS[2]} />
-
-            <CoreConcepts {...CORE_CONCEPTS[3]} />
+            {CORE_CONCEPTS.map((concept) => (
+              <CoreConcepts key={concept.title} {...concept} />
+            ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
             <TabButton
+              isSelected={selectedTopic === "components"}
               onSelect={() => {
                 handleSelect("components");
               }}
@@ -59,6 +60,7 @@ function App() {
             </TabButton>
 
             <TabButton
+              isSelected={selectedTopic === "jsx"}
               onSelect={() => {
                 handleSelect("jsx");
               }}
@@ -67,6 +69,7 @@ function App() {
             </TabButton>
 
             <TabButton
+              isSelected={selectedTopic === "props"}
               onSelect={() => {
                 handleSelect("props");
               }}
@@ -74,6 +77,7 @@ function App() {
               Props
             </TabButton>
             <TabButton
+              isSelected={selectedTopic === "state"}
               onSelect={() => {
                 handleSelect("state");
               }}
